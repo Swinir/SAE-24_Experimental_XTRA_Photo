@@ -4,11 +4,11 @@ import sys
 def check_installed():
     try:
         import pip
+        print("Pip is installed")
     except ImportError:
         print("Pip not present. Trying to install...")
         try:
             subprocess.check_call(['python3', 'get-pip.py'])
-            print("Pip is installed")
         except:
             sys.exit("Cannot install Pip... Exiting")
 
