@@ -6,4 +6,5 @@ else
         apt update
         apt install python3
 fi
+touch PHOTOS.json
 python3 ./main.py
