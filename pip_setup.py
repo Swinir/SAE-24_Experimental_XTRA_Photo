@@ -8,6 +8,7 @@ def check_installed():
         print("Pip not present. Trying to install...")
         try:
             subprocess.check_call(['python3', 'get-pip.py'])
+            print("Pip is installed")
         except:
             sys.exit("Cannot install Pip... Exiting")
 
