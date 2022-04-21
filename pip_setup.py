@@ -16,4 +16,7 @@ def install(name):
     try:
         subprocess.check_call(['pip3', 'install', name])
     except:
-        print("Dependency couldn't be installed. Trying to continue execution...")
+        try:
+            subprocess.check_call(['python', '-m', 'pip', 'install', name])
+        except:
+            print("Dependency couldn't be installed. Trying to continue execution...")
