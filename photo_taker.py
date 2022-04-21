@@ -24,7 +24,7 @@ def take_picture():
     resolution = '1280x720'
     save_location = 'images/' + photo_name + '.png'
 
-    #subprocess.check_call(['fswebcam', '-r', resolution, '--no-banner', save_location]) #commented for testing
+    subprocess.check_call(['fswebcam', '-r', resolution, '--no-banner', save_location])
 
     PHOTOS_container.append(PHOTOS(photo_name,time_obj))
 
