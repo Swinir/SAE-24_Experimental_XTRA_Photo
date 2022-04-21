@@ -2,6 +2,7 @@ FILE=./installed
 if [ -f "$FILE" ]
 then
   echo "Starting program ...."
+  python3 ./main.py
 else
   echo "First Start ! This will take a little bit longer"
 
@@ -15,8 +16,12 @@ else
   fi
 
   touch ./PHOTOS.json
-  touch ./installed
   python3 ./first_install.py
+  if [ $? -eq 1 ]
+  then
+    kill $$
+  fi
+  touch ./installed
   python3 ./main.py
 fi
 
