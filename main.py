@@ -1,6 +1,5 @@
 import save_data
 
-import settings
 import photo_taker
 
 
