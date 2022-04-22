@@ -13,8 +13,9 @@ else
   then
     echo "Python3 is installed"
   else
-    apt update
-    apt install python3
+    apt-get update -y
+    apt-get install python3 -y
+    apt-get install python3-distutils -y
   fi
 
   python3 ./first_install.py
@@ -25,6 +26,7 @@ else
 
   sudo apt-get update
   sudo apt-get install mariadb-server -y
+  sudo mysql_install_db
   sudo systemctl enable mariadb
   sudo systemctl start mariadb
 
