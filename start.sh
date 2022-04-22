@@ -18,17 +18,29 @@ else
   fi
 
   python3 ./first_install.py
-
-  sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password iutphoto"
-  sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password iutphoto"
-  sudo apt-get update
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
-
-  touch ./PHOTOS.json
   if [ $? -eq 1 ]
   then
     kill $$
   fi
+
+  sudo apt-get update
+  sudo apt-get install mariadb-server -y
+  sudo systemctl enable mariadb
+  sudo systemctl start mariadb
+
+  #Automated first configuration of MariaDB
+
+  sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('iutphoto');"
+  sudo mysql -e "DROP USER ''@'localhost'"
+  sudo mysql -e "DROP USER ''@'$(hostname)'"
+  sudo mysql -e "DROP DATABASE test"
+  sudo mysql -e "FLUSH PRIVILEGES"
+
+  #########################################
+
+  python3 sql_first_install.py
+
+  touch ./PHOTOS.json
   touch ./installed
   python3 ./main.py
 fi
