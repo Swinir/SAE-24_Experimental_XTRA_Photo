@@ -1,4 +1,5 @@
 import mysql.connector
+import sql_bridge
 
 def Db_Initialise():
   Database = mysql.connector.connect(
@@ -13,3 +14,6 @@ def Db_Initialise():
   Database.commit()
 
 Db_Initialise()
+
+sql_bridge.Db_Connection_Start()
+sql_bridge.Db_Change_SQL_File("test","/Users/jean-baptistebruneau/Downloads/mael_1","root","Iutphoto123@")
