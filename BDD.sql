@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : lun. 25 avr. 2022 à 13:55
+-- Généré le : jeu. 28 avr. 2022 à 16:24
 -- Version du serveur : 10.6.5-MariaDB
 -- Version de PHP : 7.4.26
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `id_photo` int(11) NOT NULL AUTO_INCREMENT,
   `contenue_photo` blob NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'commentaires si on veut',
-  `favorie` tinyint(1) NOT NULL COMMENT 'fav ou non',
+  `favorie` tinyint(1) NOT NULL COMMENT 'mettre en favorie ou pas',
   `date_photo` datetime NOT NULL,
   PRIMARY KEY (`id_photo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -61,11 +61,12 @@ CREATE TABLE IF NOT EXISTS `photos` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `name_user` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pseudo si co facultatif',
+  `#username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pseudo + clé étrangère pour relier photos et logs',
   `login` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint(1) NOT NULL COMMENT 'l''utilisateur est-il admin ?',
-  PRIMARY KEY (`id_user`)
+  PRIMARY KEY (`id_user`),
+  KEY `#username` (`#username`(250))
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
