@@ -1,5 +1,4 @@
 import mysql.connector
-import subprocess
 
 
 def Db_Connection_Start():
@@ -8,7 +7,8 @@ def Db_Connection_Start():
         Database = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Iutphoto123@"
+            password="Iutphoto123@",
+            database="BDD"
         )
     except:
         print("Impossible de se connecter à la base de donnée")
@@ -17,10 +17,6 @@ def Db_Connection_Start():
 
     global Db_Cursor
     Db_Cursor = Database.cursor()
-
-def Db_Change_SQL_File(db_name, path, user, passwd):
-    sql = str("mysql -u " + user + " --password=" + passwd + " " + db_name + " < " + path + ".sql")
-    subprocess.call(sql, shell=True)
 
 
 def Db_Insert(str_to_insert, table, fields, types):
@@ -31,7 +27,7 @@ def Db_Insert(str_to_insert, table, fields, types):
 
 
 def Db_Select(table, fields, conditions):
-    if conditions:
+    if conditions != "":
         sql = str("SELECT " + fields + " FROM " + table + " WHERE " + conditions)
     else:
         sql = str("SELECT " + fields + " FROM " + table)
