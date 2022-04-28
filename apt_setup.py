@@ -2,7 +2,7 @@ import subprocess
 
 def check_installed(name):
     try:
-        subprocess.check_call([name])
+        subprocess.check_call(str("which "+name), shell=True)
     except:
         print(name+" not present. Trying to install...")
         try:
