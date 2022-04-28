@@ -9,5 +9,6 @@ import apt_setup
 check_root.user_check()
 pip_setup.check_installed()
 pip_setup.install("mysql-connector-python")
+pip_setup.install("configparser")
 apt_setup.check_installed("fswebcam")
 
