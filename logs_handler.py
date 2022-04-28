@@ -1,16 +1,15 @@
 import sql_bridge
 
 def entry_create(severity):
-    match severity:
-        case 'notice':
+    if severity == 'notice':
             log_level = 0
             sql_bridge.Db_Insert(severity, "logs", "fields", "char")
 
-        case 'notice':
+    if severity == 'notice':
             log_level = 1
 
-        case 'warning':
+    if severity == 'warning':
             log_level = 2
 
-        case 'critical':
+    if severity == 'critical':
             log_level = 3
