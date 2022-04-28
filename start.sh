@@ -28,15 +28,21 @@ else
   sudo apt-get install mariadb-server -y
   sudo mysql_install_db
   sudo systemctl enable mariadb
+  sudo systemctl stop mysql
+  rm -rf /var/lib/mysql/*
+  sudo mysql_install_db
   sudo systemctl start mariadb
 
   #Automated first configuration of MariaDB
 
-  sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('iutphoto');"
+  sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('Iutphoto123@');"
   sudo mysql -e "DROP USER ''@'localhost'"
   sudo mysql -e "DROP USER ''@'$(hostname)'"
   sudo mysql -e "DROP DATABASE test"
   sudo mysql -e "FLUSH PRIVILEGES"
+
+  sudo mysql -e "DROP DATABASE IF EXISTS BDD;"
+  sudo mysql -e "CREATE DATABASE BDD;"
 
   #########################################
 
