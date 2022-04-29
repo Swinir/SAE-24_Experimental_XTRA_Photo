@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title></title>
+    </head>
+    <body>
+        <header>
+          <a href="index.html">
+            PROJET PHOTO ATB - BANC N°XX
+          </a>
+          <span><button type="submit">Connexion</button></span>
+        </header>
+        
+        <nav>
+          <br>
+          <span>Menu :</span><br><br>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="gallerie.html">Galerie</a></li>
+                <li><a href="para.html">Paramétres</a></li>
+
+            </ul>
+        </nav>
+
+        <section id="main">
+          <h1>Capture du banc</h1>
+          <form method="post" action='action.php'>
+
+                <p><input type="text" name="nom" id="nom" value="Nom de la capture">
+                </p>
+                <br>
+                
+                <p><textarea type="textarea" rows="5" cols="40" id="description" value="Description" >Description...</textarea>
+                </p>
+
+                <p><button type="submit">Démarrer la capture</button></p>
+        </section>
+        <footer>
+          
+        </footer>
+    </body>
+</html>
