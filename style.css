@@ -7,9 +7,7 @@
   padding: 0px;
 }
 
-/*POUR LA POLICE UTILISEE*/
-
-
+/* PAGE PRINCIPALE*/
 html{
     font-family: circular;
     color: #0D0D0D;
@@ -20,46 +18,59 @@ html{
 
 header{
     background-color: blue;
-    height: 40px;
     font-size: xx-large;
     text-align: left;
-    padding: 10px;
-    padding-right: 40px;
+
 }
 
 header a{
   text-decoration: none;
   color: #0D0D0D;
   float: none;
-  
-}
-header span{
-    float: right;
-    align-self: center;
+    margin-left: 10%;
 }
 
-/*CONTENANT PAGE INDEX*/
+.connexion{
+    color: #f2f2f2;
+    background-color: red;
+    height: 25px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    margin: 5px 10px 5px;
+
+}
+/*CONTENANT DE LA PAGE*/
 
 #main{
     background-color: #F2F2F2;
     font-size: x-large;
     height: auto;
-    padding-left: 25%;
+    right: 0;
+    left: 0;
     text-align: center;
     font-family: 'Josefin Sans', sans-serif;
     padding-top: 15px;
     padding-bottom: 25%;
-
+    position: absolute; z-index: 1;
 }
-input[type=text] {
-    width: 50%;
-    
-  }
-textarea[type=textarea] {
-    width: 70%;
-    height : 250px
+#main p{
+    padding: 10px;
+}
+#cacher{
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 38px;
+  display: none;
+  position: absolute; z-index: 2;
+  background-color: rgba(0,0,0,0.5);
 }
 
+#cacher.active{
+  display: block;
+}
 .photo{
     text-align: center;
     padding: 50px ;
@@ -67,38 +78,45 @@ textarea[type=textarea] {
     background-color: white;
 }
 
-#main2{
-    background-color: #F2F2F2;
-    font-size: x-large;
-    height: auto;
-    padding-left: 25%;
-    text-align: left;
-    font-family: 'Josefin Sans', sans-serif;
-    padding-top: 6%;
-    padding-bottom: 25%;
-
-}
-#main2 li{
+#main li{
     list-style-type: none;
     padding-bottom: 10px;
 }
 
-#main2 a{
+#main a{
     display: block;
     text-decoration: none;
     color: black;
     border-bottom: 2px solid transparent;
 }
-#main2 a:hover{
+
+#main a:hover{
     color: blue;
     border-bottom: 2px solid;
     border-color: blue;
+}
+
+input[type=button]{
+    background-color: blue;
+    color: #F2F2F2;
+    border: none;
+    border-radius: 15px;
+    height: 50px;
+    width: 200px;
+    font-weight: bolder;
+}
+
+.para{
+  margin-left: 25%;
+  text-align: left;
+  padding-top: 6%;
 }
 
 .afflogs{
     text-align: center;
     padding: 50px ;
     height: 500px;
+    margin-left: 50px;
     margin-right: 50px;
     background-color: white;
 }
@@ -107,65 +125,110 @@ textarea[type=textarea] {
     text-align: left;
     padding: 50px ;
     height: 500px;
+    margin-left: 50px;
     margin-right: 50px;
     background-color: white;
 }
+
 .affusers button{
     float: right;
 }
+
 .affusers .g{
     background-color: grey;
 }
+
 .affusers .b{
     background-color: #f2f2f2;
 }
 
-.retour {
-    text-decoration: none;
-    color: black;
-    float: left;
+/*POUR LES FOMRULAIRES*/
+input[type=text] {
+    width: 50%;
+
+  }
+
+textarea[type=textarea] {
+    width: 70%;
+    height : 250px
 }
-.retour:hover{
-    color: blue;
-    border-bottom: 2px solid;
-    border-color: blue;
-}
+
 /*BARRE DE NAVIGATION A GAUCHE*/
 
 nav{
     font-family: 'Josefin Sans', sans-serif;
     background-color: #F2F2F2;
-    margin: 20px;
     height: 500px;
     width: 20%;
     float: left;
     text-align: center;
     border-right: 1px solid #0D0D0D;
 }
+
 nav span{
     text-decoration: underline;
     font-size: 19px;
     font-weight: bold;
 
 }
+
 nav ul{
     list-style-type: none;
     font-size: 19px;
 }
+
 nav ul li {
-    padding: 35px;
+    /*padding: 35px;*/
     font-weight: bold;
 }
+
 nav a{
-    display: block;
+    /*display: block;*/
     text-decoration: none;
     color: black;
     border-bottom: 2px solid transparent;
 }
+
 nav a:hover{
     color: blue;
     border-bottom: 2px solid;
     border-color: blue;
 }
 
+/*BOUTON APPARITION*/
 
+
+#sidebar {
+    position: absolute;
+    width: 300px;
+    height: 100%;
+    background: #f2f2f2;
+    left: -300px;
+    transition: .4s;
+    z-index: 3;
+  }
+
+  #sidebar ul li {
+    padding: 26px 24px;
+  }
+
+  #sidebar .bouton-app {
+    position: absolute;
+    top: 30px;
+    left: 330px;
+  }
+
+  .bouton-app span {
+    width: 45px;
+    height: 4px;
+    background: #000;
+    display: block;
+    margin-top: 4px;
+    position: -webkit-sticky;
+    position: sticky;
+    top : 0;
+  }
+
+  #sidebar.active {
+    left: 0;
+  }
