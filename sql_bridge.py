@@ -19,10 +19,9 @@ def Db_Connection_Start():
     Db_Cursor = Database.cursor()
 
 
-def Db_Insert(str_to_insert, table, fields, types):
-    sql = str("INSERT INTO " + table + " (" + fields + ") VALUES (" + types + ")")
-    val = str_to_insert
-    Db_Cursor.executemany(sql, val)
+def Db_Insert(table, fields, values):
+    sql = str("INSERT INTO " + table + " (" + fields + ") VALUES (" + values + ");")
+    Db_Cursor.execute(sql)
     Database.commit()
 
 
