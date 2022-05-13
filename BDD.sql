@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : jeu. 28 avr. 2022 à 16:24
+-- Généré le : ven. 13 mai 2022 à 09:01
 -- Version du serveur : 10.6.5-MariaDB
 -- Version de PHP : 7.4.26
 
@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
 DROP TABLE IF EXISTS `photos`;
 CREATE TABLE IF NOT EXISTS `photos` (
   `id_photo` int(11) NOT NULL AUTO_INCREMENT,
-  `contenue_photo` blob NOT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'commentaires si on veut',
-  `favorie` tinyint(1) NOT NULL COMMENT 'mettre en favorie ou pas',
+  `favori` tinyint(1) NOT NULL COMMENT 'mettre en favorie ou pas',
   `date_photo` datetime NOT NULL,
+  `path_photo` varchar(255) NOT NULL,
   PRIMARY KEY (`id_photo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint(1) NOT NULL COMMENT 'l''utilisateur est-il admin ?',
+  `block_user` tinyint(1) NOT NULL COMMENT '0= free /1=blocked',
   PRIMARY KEY (`id_user`),
   KEY `#username` (`#username`(250))
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
