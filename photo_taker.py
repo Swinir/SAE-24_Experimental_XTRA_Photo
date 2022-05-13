@@ -29,5 +29,5 @@ def take_picture():
 
     PHOTOS_container.append(PHOTOS(photo_name,time_obj))
     values = str("'" + photo_path + "'" +  " , " + "'" + "0" + "'" + " , " + "'" + time_str + "'")
-    sql_bridge.Db_Insert("photos","path_photo , favori , date_photo ", values)
+    sql_bridge.Db_Insert("photos","path_photo , favori , date_photo", values)
 
