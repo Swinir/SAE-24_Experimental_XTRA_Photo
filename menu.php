@@ -1,9 +1,5 @@
 <nav id="sidebar">
-  <div class="bouton-app" onclick="apparaitre()">
-      <span></span>
-      <span></span>
-      <span></span>
-  </div>
+
   <br>
   <span>Menu :</span><br><br>
     <ul>

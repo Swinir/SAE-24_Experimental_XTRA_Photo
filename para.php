@@ -22,11 +22,17 @@
               <li>.</li>
               <li>.</li>
               <li>.</li>
-              <li>.</li>
+              
 
             </ul>
-
+          
           </div>
+          <div id="prog">
+            <div id="comp">
+              70%
+            </div>
+          </div>
+          : 500Mb
         </section>
         <footer>
 
