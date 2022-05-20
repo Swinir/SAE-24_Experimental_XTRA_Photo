@@ -6,7 +6,7 @@ path = f.read()
 f.close()
 
 cron = CronTab(tabfile='/etc/crontab', user=False)
-command = 'python3 ' + str(path)
+command = 'python3 ' + str(path) + 'photo_taker.py'
 
 def cron_en():
     job = cron.new(command=command)
