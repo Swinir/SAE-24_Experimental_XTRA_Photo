@@ -4,6 +4,11 @@ import subprocess
 import import_data
 import sql_bridge
 
+
+f = open('installed_path.txt', 'r')
+path = f.read()
+f.close()
+
 class PHOTOS:
     def __init__(self,file_name,time):
         self.file_name = file_name
@@ -20,8 +25,9 @@ if PHOTOS_container_dict:
 def take_picture():
     time_obj = time.localtime() #returns an object
     time_str = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + " " + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
-    photo_name = "Test" #WILL CHANGE
-    photo_path = str('images/' + photo_name + '.png')
+    time_str_no_space = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + "_" + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
+    photo_name = str("photo_"+time_str_no_space)
+    photo_path = str(path+'/'+'images/' + photo_name + '.png')
 
     resolution = '1280x720'
 
