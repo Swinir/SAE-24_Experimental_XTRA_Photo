@@ -11,4 +11,5 @@ pip_setup.check_installed()
 pip_setup.install("mysql-connector-python")
 pip_setup.install("configparser")
 apt_setup.check_installed("fswebcam")
+apt_setup.check_installed("python-crontab")
 
