@@ -16,15 +16,15 @@
 
             <h1>Connexion</h1>
             <div id="connexion">
-            <form method="post" action='action.php'>
+            <form method="post" action='conn.php'>
 
-            <p><input type="text" name="nom" id="Iden" class="formcon" placeholder=" Identifiant">
+            <p><input type="text" name="Iden" id="Iden" class="formcon" placeholder=" Identifiant">
             </p>
         
-            <p><input type="text" id="mdp" class="formcon" placeholder=" Mot de passe" >
+            <p><input type="password" name="mdp" id="mdp" class="formcon" placeholder=" Mot de passe" >
             </p>
 
-            <p><input type="button" value="Connexion"></p>
+            <p><input type="submit" value="Connexion"></p>
             </div>
             
         </section>
