@@ -6,7 +6,15 @@ then
   echo "Starting program ...."
   python3 ./main.py
 else
+  echo "It seems this is the first time this program is launched, do you want to install all the dependencies and setup the website automatically ? (yes or no)"
+  read choice
+  if [ $choice != 'yes' ]
+  then
+    exit 45
+  fi
   echo "First Start ! This will take a little bit longer"
+
+  #Intallation of python
 
   which python3
   if [ $? -eq 0 ]
@@ -24,9 +32,11 @@ else
     kill $$
   fi
 
+  #Installation of mariadb
+
   sudo apt-get update
   sudo apt-get install mariadb-server -y
-  sudo mysql_install_db
+  sudo mysqldump --password=Iutphoto123@ --all-databases > BDD-Backup-first_install.sql
   sudo systemctl enable mariadb
   sudo systemctl stop mysql
   rm -rf /var/lib/mysql/*
@@ -47,6 +57,24 @@ else
   #########################################
 
   python3 sql_first_install.py
+
+  #Installation of Apache
+
+  sudo apt install apache2 -y
+  sudo cp ./html /var/www/ -r
+  sudo rm /var/www/html/index.html
+  sudo chown www-data:www-data /var/www/html
+
+  #Installation of php
+
+  sudo apt install php -y
+  sudo service apache2 restart
+
+  ##############
+
+  pwd > installed_path.txt
+
+  pwd > /var/www/html/installed_path.txt #adds the path of the python script to the php folder
 
   touch ./PHOTOS.json
   touch ./installed
