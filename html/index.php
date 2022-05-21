@@ -13,7 +13,16 @@
       ?>
 
         <section id="main">
-
+            <?php
+            if(isset($_GET['con'])){
+                if($_GET['con'] == 1){
+                    echo "Vous êtes connecté !";
+                }elseif($_GET['con'] == 2){
+                    echo "Vous avez été bloqué ulterieurement. Veuillez contacter un administrateur.";
+                }
+            }
+                
+            ?>
             <h1>Capture du banc</h1>
             <form method="post" action='action.php'>
 

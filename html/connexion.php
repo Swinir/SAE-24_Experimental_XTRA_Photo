@@ -10,10 +10,23 @@
       <?php
       include("header.php");
       include("menu.php");
+      include("base.php");
       ?>
 
         <section id="main">
-
+            <?php       
+            if(isset($_GET['con'])){
+                if($_GET['con'] == 0){
+                    echo "Identifiant ou mot de passe éroné. Veuillez réessayer.";
+                    echo "Tentative effectuée ".$_SESSION['tentative'];
+                }
+            }
+            if(isset($_SESSION['tentative'])){
+                if($_SESSION['tentative']==3){
+                    echo "vous etes bloqués : Trop de tentative effectuées. Veillez contacter l'administrateur.";
+                }
+            }
+            ?>
             <h1>Connexion</h1>
             <div id="connexion">
             <form method="post" action='conn.php'>

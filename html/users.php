@@ -17,10 +17,7 @@
             <br>
           <div class="affusers">
           <form action="#">
-            <p class="g">Toto : <button type="submit">Supprimer</button> <button type="submit">Mettre à niveau</button> </p>
-            <p class="b">Tata : <button type="submit">Supprimer</button> <button type="submit">Mettre à niveau</button> </p>
-            <p class="g">Titi : <button type="submit">Supprimer</button> <button type="submit">Mettre à niveau</button> </p>
-            <p class="b">Tutu : <button type="submit">Supprimer</button> <button type="submit">Mettre à niveau</button> </p>
+            
           </form>
           </div>
 
