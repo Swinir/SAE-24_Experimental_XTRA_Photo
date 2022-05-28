@@ -9,6 +9,11 @@
       <?php
       include("header.php");
       include("menu.php");
+      if(isset($_SESSION['admin'])){
+        if($_SESSION['admin'] == 0){
+          header("Location: index.php");
+        }
+      }
       ?>
 
         <section id="main">

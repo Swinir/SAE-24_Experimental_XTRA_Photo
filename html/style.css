@@ -34,6 +34,16 @@ header a{
 }
 .connexion{
     color: #f2f2f2;
+    background-color: #2D648B;
+    height: 25px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    margin: 5px 100px 5px;
+}
+.deconnexion{
+    color: #f2f2f2;
     background-color: #EF1A28;
     height: 25px;
     width: 100px;
@@ -41,7 +51,6 @@ header a{
     border-radius: 10px;
     float: right;
     margin: 5px 100px 5px;
-
 }
 form#con{
     width: 100px;
@@ -85,7 +94,9 @@ form#con{
     margin: 25px 50px;
     background-color: white;
 }
-
+.photo img{
+    height: 350px;
+}
 #main li{
     list-style-type: none;
     padding-bottom: 10px;
