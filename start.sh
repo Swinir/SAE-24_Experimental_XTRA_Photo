@@ -16,6 +16,9 @@ else
 
   #Intallation of python
 
+  touch ./LOGS.json
+  touch ./LOGS.txt
+
   which python3
   if [ $? -eq 0 ]
   then
