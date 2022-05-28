@@ -10,15 +10,16 @@ path = f.read()
 f.close()
 
 class PHOTOS:
-    def __init__(self,file_name,time):
+    def __init__(self,file_name,time,path):
         self.file_name = file_name
         self.time = time
+        self.photo_path = path
 
 PHOTOS_container = []
 PHOTOS_container_dict = import_data.load_class("PHOTOS.json")
 if PHOTOS_container_dict:
     for i in PHOTOS_container_dict["PHOTOS"]:
-        PHOTOS_container.append(PHOTOS(i["file_name"],i["time"]))
+        PHOTOS_container.append(PHOTOS(i["file_name"],i["time"],i["path"]))
 
 
 
@@ -29,11 +30,11 @@ def take_picture():
     photo_name = str("photo_"+time_str_no_space)
     photo_path = str(path+'/'+'images/' + photo_name + '.png')
 
-    resolution = '1280x720'
+    resolution = '1920x1080'
 
     subprocess.check_call(['fswebcam', '-r', resolution, '--no-banner', photo_path])
 
-    PHOTOS_container.append(PHOTOS(photo_name,time_obj))
+    PHOTOS_container.append(PHOTOS(photo_name,time_str,photo_path))
     values = str("'" + photo_path + "'" +  " , " + "'" + "0" + "'" + " , " + "'" + time_str + "'")
     sql_bridge.Db_Insert("photos","path_photo , favori , date_photo", values)
 
