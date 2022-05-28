@@ -32,9 +32,16 @@ else
     kill $$
   fi
 
-  #Installation of mariadb
+ #getting an update for next installs
 
   sudo apt-get update
+
+  #installation of crontab
+
+  sudo apt-get install cron
+
+  #Installation of mariadb
+
   sudo apt-get install mariadb-server -y
   sudo mysqldump --password=Iutphoto123@ --all-databases > BDD-Backup-first_install.sql
   sudo systemctl enable mariadb
