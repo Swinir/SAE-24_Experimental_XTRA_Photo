@@ -1,5 +1,6 @@
 from crontab import CronTab
 import sys
+import logs_handler
 
 f = open('installed_path.txt', 'r')
 path = f.read()
@@ -20,6 +21,16 @@ def cron_dis():
 
 
 if sys.argv[0] == "activate":
-    cron_en()
+    try:
+        cron_en()
+    except:
+        logs_handler.entry_create("warning",
+                                "Impossible to activate the automatic picture taking script",
+                                "yes")
 elif sys.argv[0] == "disable":
-    cron_dis()
+    try:
+        cron_dis()
+    except:
+        logs_handler.entry_create("warning",
+                                "Impossible to deactivate the automatic picture taking script",
+                                "yes")

@@ -4,6 +4,7 @@ import subprocess
 import import_data
 import sql_bridge
 
+import logs_handler
 
 f = open('installed_path.txt', 'r')
 path = f.read()
@@ -22,7 +23,6 @@ if PHOTOS_container_dict:
         PHOTOS_container.append(PHOTOS(i["file_name"],i["time"],i["path"]))
 
 
-
 def take_picture():
     time_obj = time.localtime() #returns an object
     time_str = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + " " + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
@@ -32,9 +32,29 @@ def take_picture():
 
     resolution = '1920x1080'
 
-    subprocess.check_call(['fswebcam', '-r', resolution, '--no-banner', photo_path])
+    try:
+        subprocess.check_call(['fswebcam', '-r', resolution, '--no-banner', photo_path])
+    except:
+        logs_handler.entry_create("critical",
+                                "The program couldn't take a picture using the camera",
+                                "yes")
 
-    PHOTOS_container.append(PHOTOS(photo_name,time_str,photo_path))
+    try:
+        PHOTOS_container.append(PHOTOS(photo_name,time_str,photo_path))
+    except:
+        logs_handler.entry_create("warning",
+                                "A photo " + "(" + str(photo_name) + ")" + " could not have been saved to the JSON backup database",
+                                "yes")
+
     values = str("'" + photo_path + "'" +  " , " + "'" + "0" + "'" + " , " + "'" + time_str + "'")
-    sql_bridge.Db_Insert("photos","path_photo , favori , date_photo", values)
+
+    try:
+        sql_bridge.Db_Insert("photos","path_photo , favori , date_photo", values)
+        logs_handler.entry_create("info",
+                                "A photo " + "(" + str(photo_name) + ")" + " has just been saved",
+                                "yes")
+    except:
+        logs_handler.entry_create("critical",
+                                "A photo " + "(" + str(photo_name) + ")" + " could not have been saved to database",
+                                "yes")
 

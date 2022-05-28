@@ -1,5 +1,5 @@
 import mysql.connector
-
+import logs_handler
 
 def Db_Connection_Start():
     global Database
@@ -12,7 +12,9 @@ def Db_Connection_Start():
         )
     except:
         print("Impossible de se connecter à la base de donnée")
-    # Rajouter la fonciton pour ajouter un message dans les logs
+        logs_handler.entry_create("critical",
+                                "Impossible to connect to the MariaDB database",
+                                "no")
 
 
     global Db_Cursor
@@ -21,8 +23,13 @@ def Db_Connection_Start():
 
 def Db_Insert(table, fields, values):
     sql = str("INSERT INTO " + table + " (" + fields + ") VALUES (" + values + ");")
-    Db_Cursor.execute(sql)
-    Database.commit()
+    try:
+        Db_Cursor.execute(sql)
+        Database.commit()
+    except:
+        logs_handler.entry_create("critical",
+                                "Impossible to insert data into database",
+                                "no")
 
 
 def Db_Select(table, fields, conditions):
@@ -30,6 +37,11 @@ def Db_Select(table, fields, conditions):
         sql = str("SELECT " + fields + " FROM " + table + " WHERE " + conditions)
     else:
         sql = str("SELECT " + fields + " FROM " + table)
-    Db_Cursor.execute(sql)
-    result = Db_Cursor.fetchall()
-    return result
+    try:
+        Db_Cursor.execute(sql)
+        result = Db_Cursor.fetchall()
+        return result
+    except:
+        logs_handler.entry_create("warning",
+                                "Impossible to select data from the database",
+                                "no")
