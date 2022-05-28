@@ -16,13 +16,11 @@ sql_bridge.Db_Connection_Start()
 #Handles the exit of the program:
 #     - Saves the PHOTOS objects to a json file
 
-def exit_handler():
+def exit_handler_photo():
     print ('App is exiting')
     save_data.save_class(photo_taker.PHOTOS_container,"PHOTOS.json","PHOTOS")
-    save_data.save_class(logs_handler.LOGS_container, "LOGS.json","LOGS")
 
-
-atexit.register(exit_handler)
+atexit.register(exit_handler_photo)
 
 #------------------------------------------------------------------------------------------
 

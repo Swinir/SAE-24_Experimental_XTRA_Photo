@@ -1,6 +1,8 @@
 import sql_bridge
 import time
 import import_data
+import save_data
+import atexit
 
 class LOGS:
     def __init__(self, severity_class, description_class, time_str_class):
@@ -45,3 +47,9 @@ def entry_create(severity,description,sql): #sql input checks if the exception a
 
     with open('LOGS.txt', 'w') as output:
         output.write(str(result))
+
+
+def exit_handler_log():
+    save_data.save_class(LOGS_container, "LOGS.json", "LOGS")
+
+atexit.register(exit_handler_log)
