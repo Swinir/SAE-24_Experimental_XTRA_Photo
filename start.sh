@@ -80,6 +80,7 @@ else
   #Installation of php
 
   sudo apt install php -y
+  sudo apt install php-mysql -y
   sudo service apache2 restart
 
   ##############
