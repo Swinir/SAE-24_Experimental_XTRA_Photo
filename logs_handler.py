@@ -4,6 +4,8 @@ import import_data
 import save_data
 import atexit
 
+sql_bridge.Db_Connection_Start()
+
 class LOGS:
     def __init__(self, severity_class, description_class, time_str_class):
         self.severity = severity_class
@@ -38,15 +40,16 @@ def entry_create(severity,description,sql): #sql input checks if the exception a
 
     result = str(content) + str(severity)+ " : " + str(description) + ". Time of log : " + str(time_str) + "\n"
 
+    with open('LOGS.txt', 'w') as output:
+        output.write(str(result))
+
     if sql == "yes":
         values = str("'" + description + "'" + " , " + "'" + str(log_level) + "'" + " , " + "'" + time_str + "'")
-        sql_bridge.Db_Insert("logs", "contenue_log , niv_log , date_log", values)
         LOGS_container.append(LOGS(severity, description, time_str))
+        sql_bridge.Db_Insert("logs", "contenue_log , niv_log , date_log", values)
     if sql == "no":
         LOGS_container.append(LOGS(severity, description, time_str))
 
-    with open('LOGS.txt', 'w') as output:
-        output.write(str(result))
 
 
 def exit_handler_log():
