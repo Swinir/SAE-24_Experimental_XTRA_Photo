@@ -1,10 +1,10 @@
 <?php
 // Acces compte mysql sur isis.
 
-$server = "127.0.0.1";
+$server = "localhost";
 $user = "root";
-$password = "root";
-$base = "sae24";
+$password = "Iutphoto123@";
+$base = "BDD";
 
 // Pour l'utiliser mettre par exemple dans votre .php qui ouvre votre base :
 //   include("/users/etudiant/a/am103879/www/.ht_mysql.inc");
