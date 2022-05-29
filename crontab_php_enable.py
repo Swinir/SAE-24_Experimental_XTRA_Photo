@@ -5,32 +5,37 @@ import logs_handler
 f = open('installed_path.txt', 'r')
 path = f.read()
 f.close()
+if path[-1:] == '\n':
+    path = path[:-1]
 
-cron = CronTab(tabfile='/etc/crontab', user=False)
-command = 'python3 ' + str(path) + 'photo_taker.py'
+mycron = CronTab(user='pi')
 
 def cron_en():
-    job = cron.new(command=command)
-    job.day.every(1)
-    cron.write()
+    mycron.env['main'] = str(path)+'main.py'
+    job = mycron.new(command='python3 main', comment='AUTOMATIC PIC TAKER')
+    job.minute.on(0)
+    job.hour.on(12)
+    mycron.write()
 
 
 def cron_dis():
-    cron.remove_all(command)
-    cron.write()
+    mycron.remove_all(comment='AUTOMATIC PIC TAKER')
+    mycron.write()
 
 
-if sys.argv[0] == "activate":
+
+
+if sys.argv[1] == 'activate':
     try:
         cron_en()
     except:
         logs_handler.entry_create("warning",
-                                "Impossible to activate the automatic picture taking script",
+                                "Failure to activate the automatic picture taking script",
                                 "yes")
-elif sys.argv[0] == "disable":
+elif sys.argv[1] == 'disable':
     try:
         cron_dis()
     except:
         logs_handler.entry_create("warning",
-                                "Impossible to deactivate the automatic picture taking script",
+                                "Failure to deactivate the automatic picture taking script",
                                 "yes")

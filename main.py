@@ -28,10 +28,7 @@ atexit.register(exit_handler_photo)
 
 
 
-
-ask = input(str("Take a pic ?"))
-if ask == "yes":
-    photo_taker.take_picture()
+photo_taker.take_picture()
 
 
 
