@@ -6,9 +6,9 @@ def save_class(class_container,file_name,class_name):
         if class_container != "":
             with open(file_name, "w") as out_file:
                 out_file.writelines(["{", "\n", f'"{"" + str(class_name) + ""}"', ":", "["])
-                for user in class_container:
-                    json.dump(user.__dict__, out_file, indent=6)
-                    if user != class_container[-1]:
+                for temp in class_container:
+                    json.dump(temp.__dict__, out_file, indent=6)
+                    if temp != class_container[-1]:
                         out_file.write(",")
                 out_file.writelines(["]\n", "}\n"])
     except:

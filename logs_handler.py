@@ -4,7 +4,6 @@ import import_data
 import save_data
 import atexit
 
-sql_bridge.Db_Connection_Start()
 
 class LOGS:
     def __init__(self, severity_class, description_class, time_str_class):
@@ -24,7 +23,7 @@ def entry_create(severity,description,sql): #sql input checks if the exception a
     with open('LOGS.txt', 'r') as txt:
         content = txt.read()
     time_obj = time.localtime()  # returns an object
-    time_str = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + " " + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
+    time_str = str(str(time_obj[0]).zfill(2) + "-" + str(time_obj[1]).zfill(2) + "-" + str(time_obj[2]).zfill(2) + " " + str(time_obj[3]).zfill(2) + ":" + str(time_obj[4]).zfill(2) + ":" + str(time_obj[5]).zfill(2))
 
     if severity == 'info':
             log_level = 0
@@ -46,6 +45,7 @@ def entry_create(severity,description,sql): #sql input checks if the exception a
     if sql == "yes":
         values = str("'" + description + "'" + " , " + "'" + str(log_level) + "'" + " , " + "'" + time_str + "'")
         LOGS_container.append(LOGS(severity, description, time_str))
+        sql_bridge.Db_Connection_Start()
         sql_bridge.Db_Insert("logs", "contenue_log , niv_log , date_log", values)
     if sql == "no":
         LOGS_container.append(LOGS(severity, description, time_str))

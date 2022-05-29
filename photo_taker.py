@@ -3,12 +3,13 @@ import subprocess
 
 import import_data
 import sql_bridge
-
 import logs_handler
 
 f = open('installed_path.txt', 'r')
 path = f.read()
 f.close()
+if path[-1:] == '\n':
+    path = path[:-1]
 
 class PHOTOS:
     def __init__(self,file_name,time,path):
@@ -20,13 +21,13 @@ PHOTOS_container = []
 PHOTOS_container_dict = import_data.load_class("PHOTOS.json")
 if PHOTOS_container_dict:
     for i in PHOTOS_container_dict["PHOTOS"]:
-        PHOTOS_container.append(PHOTOS(i["file_name"],i["time"],i["path"]))
+        PHOTOS_container.append(PHOTOS(i["file_name"],i["time"],i["photo_path"]))
 
 
 def take_picture():
     time_obj = time.localtime() #returns an object
-    time_str = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + " " + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
-    time_str_no_space = str(str(time_obj[0]) + "-" + str(time_obj[1]) + "-" + str(time_obj[2]) + "_" + str(time_obj[3]) + ":" + str(time_obj[4]) + ":" + str(time_obj[5]))
+    time_str = str(str(time_obj[0]).zfill(2) + "-" + str(time_obj[1]).zfill(2) + "-" + str(time_obj[2]).zfill(2) + " " + str(time_obj[3]).zfill(2) + ":" + str(time_obj[4]).zfill(2) + ":" + str(time_obj[5]).zfill(2))
+    time_str_no_space = str(str(time_obj[0]).zfill(2) + "-" + str(time_obj[1]).zfill(2) + "-" + str(time_obj[2]).zfill(2) + "_" + str(time_obj[3]).zfill(2) + ":" + str(time_obj[4]).zfill(2) + ":" + str(time_obj[5]).zfill(2))
     photo_name = str("photo_"+time_str_no_space)
     photo_path = str(path+'/'+'images/' + photo_name + '.png')
 
