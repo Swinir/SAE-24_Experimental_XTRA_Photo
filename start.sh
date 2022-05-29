@@ -18,6 +18,8 @@ else
 
   touch ./LOGS.json
   touch ./LOGS.txt
+  sudo chmod 777 ./LOGS.json
+  sudo chmod 777 ./LOGS.txt
 
   which python3
   if [ $? -eq 0 ]
@@ -88,6 +90,5 @@ else
 
   touch ./PHOTOS.json
   touch ./installed
-  python3 ./main.py
 fi
 
