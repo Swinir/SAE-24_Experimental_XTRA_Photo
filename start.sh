@@ -83,6 +83,9 @@ else
   sudo apt install php-mysql -y
   sudo service apache2 restart
 
+
+  sudo ln -s pwd/images /var/www/html/
+
   ##############
 
   pwd > installed_path.txt
