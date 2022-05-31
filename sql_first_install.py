@@ -2,6 +2,7 @@ import mysql.connector
 import os
 import sql_bridge
 import subprocess
+import logs_handler
 
 
 def Db_Initialise(new_password):
@@ -12,14 +13,24 @@ def Db_Initialise(new_password):
     )
     Db_Cursor = Database.cursor()
     sql = "ALTER USER 'root'@'localhost' IDENTIFIED BY '" + new_password + "';"
-    Db_Cursor.execute(sql)
-    Database.commit()
+    try:
+        Db_Cursor.execute(sql)
+        Database.commit()
+    except:
+        logs_handler.entry_create("critical",
+                                "Impossible to setup database correctly",
+                                "no")
 
 
 def Db_Change_SQL_File(db_name, path, user, passwd):
 
     sql = str("mysql -u " + user + " --password=" + passwd + " " + db_name + " < " + path + ".sql")
-    subprocess.call(sql, shell=True)
+    try:
+        subprocess.call(sql, shell=True)
+    except:
+        logs_handler.entry_create("critical",
+                                "Impossible to import databse into MariaDB",
+                                "no")
 
 
 Db_Initialise("Iutphoto123@")  # password needs to be changed via a static method or using a dynamic method
