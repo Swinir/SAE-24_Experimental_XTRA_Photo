@@ -6,7 +6,7 @@ import sql_bridge
 import logs_handler
 import camera_nb_check
 
-f = open('installed_path.txt', 'r')
+f = open('/home/installed_path.txt', 'r')
 path = f.read()
 f.close()
 if path[-1:] == '\n':
