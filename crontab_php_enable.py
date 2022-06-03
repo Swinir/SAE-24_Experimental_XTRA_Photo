@@ -2,7 +2,7 @@ from crontab import CronTab
 import sys
 import logs_handler
 
-f = open('installed_path.txt', 'r')
+f = open('/home/installed_path.txt', 'r')
 path = f.read()
 f.close()
 if path[-1:] == '\n':
@@ -11,8 +11,7 @@ if path[-1:] == '\n':
 mycron = CronTab(user='pi')
 
 def cron_en():
-    mycron.env['main'] = str(path)+'main.py'
-    job = mycron.new(command='python3 main', comment='AUTOMATIC PIC TAKER')
+    job = mycron.new(command="cd "+ str(path)+" && ./main.py", comment='AUTOMATIC PIC TAKER')
     job.minute.on(0)
     job.hour.on(12)
     mycron.write()

@@ -16,6 +16,8 @@ else
 
   #Intallation of python
 
+  sudo chmod a+x main.py
+
   touch ./LOGS.json
   touch ./LOGS.txt
   sudo chmod 777 ./LOGS.json
@@ -44,6 +46,8 @@ else
   #installation of crontab
 
   sudo apt-get install cron
+  sudo systemctl enable cron
+  sudo systemctl start cron
 
   #Installation of mariadb
 
@@ -83,16 +87,31 @@ else
   sudo apt install php-mysql -y
   sudo service apache2 restart
 
+  #create a symbolic link for the website to access pictures
 
   sudo ln -s pwd/images /var/www/html/
 
   ##############
 
-  pwd > installed_path.txt
+  sudo touch /home/installed_path.txt
+  sudo chmod 777 /home/installed_path.txt
+  pwd > /home/installed_path.txt
 
   pwd > /var/www/html/installed_path.txt #adds the path of the python script to the php folder
 
   touch ./PHOTOS.json
   touch ./installed
-fi
 
+  #adding the shortcuts on the desktop
+
+  for destdir in /home/*/Desktop/; do
+    cp desktop_shortcuts/home.desktop "$destdir"
+  done
+
+  sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
+  echo "xdg-open http://localhost" >> /etc/xdg/lxsession/LXDE-pi/autostart
+
+
+  sudo chmod a+x start.sh
+
+fi

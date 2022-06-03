@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Link
+Name=Home
+Comment=Index.php
+Icon=/usr/share/icons/gnome/256x256/places/folder_home.png
+URL=http://localhost
