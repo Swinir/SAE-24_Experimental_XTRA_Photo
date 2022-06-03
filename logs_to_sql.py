@@ -63,7 +63,7 @@ for Log_obj in LOGS_container:
         Database.commit()
     except:
         logs_handler.entry_create("critical",
-                                "Impossible to insert data into database",
+                                "Impossible to insert log data into database",
                                 "no")
 
 
