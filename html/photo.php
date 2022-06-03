@@ -9,8 +9,8 @@
         <div id="chargeement">
             <h1>Chargement ...</h1>
         </div>
-        
-    <?php 
+
+    <?php
         /* COnnexion à la base */
         include("base.php");
 
@@ -26,10 +26,9 @@
         fclose($myfile);
 
         /* execution de la commande */
+        exec('./launch_pic_taker.sh');
 
-        #exec("python3 ".$python_path."+main.py");
-
-        sleep(10); /* attente de l'execution du script */
+        sleep(5); /* attente de l'execution du script */
 
         /* Requete sql */
 
@@ -53,4 +52,3 @@
         header("Location: index.php")
         ?>
     </body>
-

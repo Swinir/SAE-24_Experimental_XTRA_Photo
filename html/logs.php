@@ -18,22 +18,23 @@
             <br>
           <div class="afflogs">
           <?php
-            $sql = "SELECT `id_log`,`contenue_log`,`niv_log`, `date_log` FROM logs";
+
+            exec('./launch_logs.sh');
+
+            sleep(1);
+
+            $sql = "SELECT contenue_log,niv_log,date_log FROM logs ORDER BY date_log DESC";
             $req = $bd->prepare($sql);
             $req->execute();
             $logs = $req->fetchAll();
             $req->closeCursor();
 
-            /*echo "<pre>";
-            print_r($logs);
-            echo "</pre>";*/
 
-           
             echo '<table>';
+
             foreach($logs as $enr){
-              
+
               echo '<tr>';
-              echo '<td>'.$enr['id_log'].'</td>';
               echo '<td class="contenue_log" >'.$enr['contenue_log'].'</td>';
               if($enr['niv_log']== 0){
                 echo '<td class="niv_log" style="background-color : white"> Information </td>';
