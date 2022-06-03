@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="style.css">
         <title></title>
     </head>
-    <body>
+    <body>  
 
 
         <?php
@@ -25,12 +25,12 @@
           <button type="submit" >Rafraichir</button>
 
           </form>
-
+          
         <?php
-
+        
         #print_r($_GET);
         $dsql="SELECT path_photo FROM photos";
-
+        
         if(isset($_GET['ordre'])){
             if($_GET['ordre'] == "recent"){
                 $tri = " ORDER BY date_photo DESC";
@@ -51,11 +51,7 @@
         #echo "</pre>";
         foreach($res as $tab){
             echo '<div class="photo">';
-            $path_photo = $tab['path_photo'];
-            $path_photo_exploded = explode("/", $path_photo);
-            $endpath = end($path_photo_exploded);
-            $path_photo = "images/".$endpath;
-            echo '<img src="'.$path_photo.'"><br>';
+            echo '<img src="'.$tab['path_photo'].'"><br>';
             echo '</div>';
 
         }

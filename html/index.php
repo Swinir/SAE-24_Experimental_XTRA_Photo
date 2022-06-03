@@ -24,16 +24,16 @@
                 
             ?>
             <h1>Capture du banc</h1>
-            <form method="post" action='action.php'>
+            <form method="post" action='photo.php'>
 
                   <p><input type="text" name="nom" id="nom" class="ind" placeholder="Nom de la capture">
                   </p>
                   <br>
 
-                  <p><textarea type="textarea" rows="5" cols="40" id="description" class="ind" placeholder="Description... (optionel)" ></textarea>
+                  <p><textarea type="textarea" rows="5" cols="40" name="descrip" id="description" class="ind" placeholder="Description... (optionel)" ></textarea>
                   </p>
 
-                  <p><input type="button" value="Démarrer la capture"></p>
+                  <p><input type="submit" value="Démarrer la capture"></p>
 
         </section>
 

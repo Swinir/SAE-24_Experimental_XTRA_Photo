@@ -190,6 +190,25 @@ input.formcon:focus{
     background-color: white;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td{
+    border: 2px solid black;
+}
+.contenue_log {
+    width: 50%;
+}
+
+.niv_log {
+    width: 25%;
+}
+
+.date_log {
+    width: 25%;
+}
+
 .affusers{
     text-align: left;
     padding: 50px ;
