@@ -1,0 +1,21 @@
+<?php
+session_start();
+include("restri.php");
+include("base.php");
+if(isset($_SESSION['user_mod'])){
+    $user = $_SESSION['user_mod'];
+}
+if(isset($_POST['conf'])){
+    if($_POST['conf'] == 'Oui'){
+        $sql = "DELETE FROM `users` WHERE `users`.`login` = '".$user."' ";
+        $req = $bd->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+        header("Location: users.php?supp=1");
+    }elseif($_POST['conf'] == 'Non'){
+        header("Location: modif.php?");
+    }
+}else{
+    header("Location: modif.php?");
+}
+?>

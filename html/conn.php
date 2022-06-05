@@ -25,6 +25,7 @@ if($res['block_user'] == 0){
         }
         $_SESSION['connecte'] = 1;
         $_SESSION['tentative'] = 0;
+        $_SESSION['user_conn'] = $login;
         header ("Location: index.php?con=1");
     }
     else {

@@ -11,6 +11,7 @@
         </div>
 
     <?php
+        session_start();
         /* COnnexion à la base */
         include("base.php");
 
@@ -18,6 +19,7 @@
 
         $nom = $_POST['nom'];
         $descrip = $_POST['descrip'];
+        $login = $_SESSION['user_conn'];
 
         /* Ouverture et lecture du path (simplement) */
 
@@ -30,7 +32,7 @@
 
         sleep(5); /* attente de l'execution du script */
 
-        /* Requete sql */
+        /* Requete sql : la derniere photo */
 
         $sql = "SELECT id_photo FROM photos";
         $req = $bd->prepare($sql);
@@ -42,12 +44,36 @@
 
         $id_der = $id_photo[count($id_photo)-1]['id_photo'];
 
-        /* On met la description dans la BDD */
+        if(isset($_SESSION['user_conn'])){
+            
+            /* Requete sql : le id de l'utilisateur s'il est connecté  */
 
-        $sql = "UPDATE photos SET description = '".$descrip."', nom = '".$nom."' WHERE id_photo = '".$id_der."' ";
-        $req = $bd->prepare($sql);
-        $req->execute();
-        $req->closeCursor();
+            $sql2 = "SELECT id_user FROM users WHERE login ='".$login."'";
+            $req = $bd->prepare($sql2);
+            $req->execute();
+            $idlog_tab = $req->fetchAll();
+            $req->closeCursor();
+            print_r($idlog_tab);
+            $idlog = $idlog_tab[0]['id_user'];
+
+            /* On met la description dans la BDD */
+
+            $sql = "UPDATE `photos` SET `#user_photo` = '".$idlog."', `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
+            $req = $bd->prepare($sql);
+            $req->execute();
+            $req->closeCursor();
+            echo $sql;
+        }else{
+
+            /* On met la description dans la BDD s'il n'est pas connecté*/
+
+            $sql = "UPDATE `photos` SET `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
+            $req = $bd->prepare($sql);
+            $req->execute();
+            $req->closeCursor();
+            echo $sql;
+        }
+
 
         header("Location: index.php")
         ?>
