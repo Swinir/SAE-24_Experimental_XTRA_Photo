@@ -18,15 +18,15 @@ include("base.php");
         
         <div id="mdp">
             <form action="fin_mdp.php" method="POST">
-                <label for="amdp">Ancien mot de passe du compte</label><br>
-                <input type="password" name="ancien_mdp" id="amdp"><br>
+                <p><label for="amdp">Ancien mot de passe du compte</label><br>
+                <input type="password" name="ancien_mdp" id="amdp"></p>
 
-                <label for="nmdp">Nouveau mot de passe</label><br>
-                <input type="password" name="nouveau_mdp" id="nmdp"><br>
+                <p><label for="nmdp">Nouveau mot de passe</label><br>
+                <input type="password" name="nouveau_mdp" id="nmdp"></p>
 
-                <label for="cmdp">Confirmer le nouveau mot de passe</label><br>
-                <input type="password" name="conf_mdp" id="cmdp"><br>
-                <p><input type="checkbox" onclick="shmdp()">Show Password</p>
+                <p><label for="cmdp">Confirmer le nouveau mot de passe</label><br>
+                <input type="password" name="conf_mdp" id="cmdp"></p>
+                <p><input type="checkbox" onclick="shmdp()"> Afficher les mots de passe</p>
                 <input type="submit" value="Valider">
             </form>
             <?php 
