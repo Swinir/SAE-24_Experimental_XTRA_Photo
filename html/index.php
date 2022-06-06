@@ -26,7 +26,7 @@
             <h1>Capture du banc</h1>
             <form method="post" action='photo.php'>
 
-                  <p><input type="text" name="nom" id="nom" class="ind" placeholder="Nom de la capture">
+                  <p><input type="text" name="nom" id="nom" class="ind" placeholder="Nom de la capture (optionel)">
                   </p>
                   <br>
 

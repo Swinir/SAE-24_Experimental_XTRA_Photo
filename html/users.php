@@ -22,7 +22,7 @@
           <?php
             if(isset($_GET['supp'])){
               if($_GET['supp']==1){
-                echo "<p> L'utilisateur a bien été supprimé </p>";
+                echo '<p style="color : red; font-size : 17px"> L\'utilisateur a bien été supprimé </p>';
               }
             }
             ?>
@@ -69,6 +69,22 @@
           </form>
           <p><hr></p>
           <p><h2><u> Ajouter un nouvel utilisateur : </u></h2></p>
+          <?php
+            if(isset($_GET['cr'])){
+              if($_GET['cr']==1){
+                echo '<p style="color : red; font-size : 17px"> Ce nom d\'utilisateur existe déjà </p>';
+              }
+              elseif($_GET['cr']==2){
+                echo '<p style="color : red; font-size : 17px"> Veuillez sélectionner un rôle </p>';
+              }
+              elseif($_GET['cr']==3){
+                echo '<p style="color : red; font-size : 17px"> L\'utilisateur a bien été crée </p>';
+              }
+              elseif($_GET['cr']==4){
+                echo '<p style="color : red; font-size : 17px"> Les mots de passe réntrés ne correspondent pas </p>';
+              }
+            }
+            ?>
           <form action="add_user.php" method="POST">
 
             <p><label for="nom">Nom d'utilisateur : </label>

@@ -16,8 +16,12 @@
         include("base.php");
 
         /* Récuperation du $_POST */
-
-        $nom = $_POST['nom'];
+        if(!empty($_POST['nom'])){
+            $nom = $_POST['nom'];
+        }elseif(empty($_POST['nom'])){
+            $nom = 'NULL';
+        }
+        
         $descrip = $_POST['descrip'];
         $login = $_SESSION['user_conn'];
 
