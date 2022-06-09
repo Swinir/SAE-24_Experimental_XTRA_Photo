@@ -1,7 +1,5 @@
-import logs_handler
 import import_data
 import sql_bridge
-import datetime
 import save_data
 import os
 
