@@ -1,4 +1,3 @@
-import sql_bridge
 import time
 import import_data
 import save_data
@@ -20,6 +19,7 @@ if LOGS_container_dict:
 
 
 def entry_create(severity,description,sql): #sql input checks if the exception accured after the sql auto install (then we can write in the sql database) or it accured before in which case we need to save it only in txt
+    import sql_bridge
     with open('LOGS.txt', 'r') as txt:
         content = txt.read()
     time_obj = time.localtime()  # returns an object

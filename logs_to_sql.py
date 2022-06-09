@@ -1,5 +1,4 @@
 import mysql.connector
-import logs_handler
 import import_data
 
 
@@ -26,6 +25,7 @@ def Db_Connection_Start():
             database="BDD"
         )
     except:
+        import logs_handler
         print("Impossible de se connecter à la base de donnée")
         logs_handler.entry_create("critical",
                                 "Impossible to connect to the MariaDB database",
@@ -62,6 +62,7 @@ for Log_obj in LOGS_container:
         Db_Cursor.execute(sql)
         Database.commit()
     except:
+        import logs_handler
         logs_handler.entry_create("critical",
                                 "Impossible to insert log data into database",
                                 "no")
