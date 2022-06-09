@@ -24,9 +24,9 @@ def most_used_color(img):
             g_total += g
             b_total += b
             count += 1
-            y = y + 3
+            y = y + 3   #Pour ajuster la précision il faut changer le chiffre de y+ et x+ par un chiffre entier plus petit (le minimum est +1) 
         x = x + 3
-
+    
     return (r_total/count, g_total/count, b_total/count)
 
 def detect_lumi(path):
