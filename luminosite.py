@@ -37,3 +37,12 @@ def detect_lumi(path):
                                 "Photo taken in dark environment, taking photo with a flash",
                                 "yes")
         return True
+
+
+def flash():
+    ##############################################################################
+    ############################## FLASH #########################################
+    ##############################################################################
+    #Importez votre code pour prendre la photo avec un flash
+    ##############################################################################
+    return False #Il faudra changer la valeur de retour lorsque vous aurez implémenté le code (passer de False à True)
