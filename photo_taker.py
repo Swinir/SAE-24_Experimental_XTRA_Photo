@@ -5,6 +5,7 @@ import import_data
 import sql_bridge
 import logs_handler
 import camera_nb_check
+import luminosite
 
 f = open('/home/installed_path.txt', 'r')
 path = f.read()
@@ -45,6 +46,20 @@ def take_picture():
 
         try:
             subprocess.check_call(['fswebcam', '-r', resolution, '-d' , current_cam , '--no-banner', photo_path])
+            if luminosite.detect_lumi(photo_path):
+                print("low lumi detected")
+                try:
+                    luminosite.flash()
+                    logs_handler.entry_create("info",
+                                              "Taking picture with flash",
+                                              "yes")
+                except:
+                    print("flash error")
+                    logs_handler.entry_create("warning",
+                                                "Flash activation error",
+                                                "yes")
+                subprocess.check_call(['fswebcam', '-r', resolution, '-d', current_cam, '--no-banner', photo_path])
+                print("photo taken")
         except:
             logs_handler.entry_create("critical",
                                 "The program couldn't take a picture using the camera",
