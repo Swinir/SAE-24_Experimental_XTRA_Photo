@@ -14,14 +14,18 @@ def most_used_color(img):
     #compteur total
     count = 0
 
-    for x in range(0,width):
-        for y in range(0,height):
+    x = 0
+    y = 0
+    while x < width:
+        while y < height:
             r, g, b = img.getpixel((x,y))
 
             r_total += r
             g_total += g
             b_total += b
             count += 1
+            y = y + 3
+        x = x + 3
 
     return (r_total/count, g_total/count, b_total/count)
 
