@@ -112,6 +112,37 @@ else
   echo "xdg-open http://localhost" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 
+
+
   sudo chmod a+x start.sh
+
+  filepath=`pwd`
+
+  echo "#!/bin/bash" > /var/www/html/launch_pic_taker.sh
+  echo "#!/bin/bash" > /var/www/html/launch_logs.sh
+  echo "#!/bin/bash" > /var/www/html/launch_cron_disable.sh
+  echo "#!/bin/bash" > /var/www/html/launch_cron_activate.sh
+
+  echo "cd ${filepath} && ./main.py" >> /var/www/html/launch_pic_taker.sh
+
+  echo "cd ${filepath} && python3 logs_to_sql.py" >> /var/www/html/launch_logs.sh
+  echo "cd ${filepath} && python3 sql_to_logs.py" >> /var/www/html/launch_logs.sh
+
+  echo "cd ${filepath} && python3 crontab_php_enable.py disable" >> /var/www/html/launch_cron_disable.sh
+
+  echo "cd ${filepath} && python3 crontab_php_enable.py activate" >> /var/www/html/launch_cron_activate.sh
+
+  sudo chmod a+wx /var/www/html/launch_pic_taker.sh
+  sudo chmod a+wx /var/www/html/launch_logs.sh
+  sudo chmod a+wx /var/www/html/launch_cron_disable.sh
+  sudo chmod a+wx /var/www/html/launch_cron_activate.sh
+
+
+
+  sudo chmod a+w /etc/apache2/envvars
+  echo "export APACHE_RUN_USER=pi" >> /etc/apache2/envvars
+  echo "export APACHE_RUN_GROUP=pi" >> /etc/apache2/envvars
+
+  sudo systemctl restart apache2
 
 fi
