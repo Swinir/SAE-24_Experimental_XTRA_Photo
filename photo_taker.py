@@ -29,9 +29,16 @@ def take_picture():
     time_obj = time.localtime() #returns an object
     time_str = str(str(time_obj[0]).zfill(2) + "-" + str(time_obj[1]).zfill(2) + "-" + str(time_obj[2]).zfill(2) + " " + str(time_obj[3]).zfill(2) + ":" + str(time_obj[4]).zfill(2) + ":" + str(time_obj[5]).zfill(2))
     time_str_no_space = str(str(time_obj[0]).zfill(2) + "-" + str(time_obj[1]).zfill(2) + "-" + str(time_obj[2]).zfill(2) + "_" + str(time_obj[3]).zfill(2) + ":" + str(time_obj[4]).zfill(2) + ":" + str(time_obj[5]).zfill(2))
-    for current_cam in camera_nb_check.check_camera():
-        cam_number = current_cam[-1:]
-        photo_name = str("photo_"+time_str_no_space+"_cam_"+str(int(cam_number)+1))
+    data_nb_data_number = camera_nb_check.check_camera()
+    i = 0
+    list_cam_number = []
+    while i < len(data_nb_data_number):
+        i += 1
+        list_cam_number.append(i)
+    counter = 0
+    for current_cam in data_nb_data_number:
+        photo_name = str("photo_"+time_str_no_space+"_cam_"+str(int(list_cam_number[counter])))
+        counter += 1
         photo_path = str(path+'/'+'images/' + photo_name + '.png')
 
         resolution = '1920x1080'
