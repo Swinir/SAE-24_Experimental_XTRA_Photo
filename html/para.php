@@ -18,7 +18,7 @@
             <ul>
               <li><a href="logs.php">Logs</a></li>
               <li><a href="users.php">Comptes Utilisateurs</a></li>
-              <li>.</li>
+              <li><a href="para_mdp.php">Parametres des mots de passe</a></li>
               <li>.</li>
               <li>.</li>
               <li>.</li>
@@ -30,10 +30,30 @@
           </div>
           <div id="prog">
             <div id="comp">
-              70%
+              <?php 
+              $free = disk_free_space("C:");
+              $total = disk_total_space("C:");
+              $pct = (int) (($free/$total) * 100);
+              #$pct = 12;
+              $taille = 100-$pct;
+              echo $taille."%";
+              echo '<script>
+              var barre = document.getElementById("comp");
+               barre.style.width = "'.$taille.'%";
+               </script>';
+              ?>
+              
             </div>
           </div>
-          : 500Mb
+          <?php
+          $chiffre = strlen($total)-9;
+          $taille_totale = "";
+          
+          for ($i=0; $i < $chiffre ; $i++) { 
+            $taille_totale = $taille_totale.substr($total,$i,1);
+          }
+          echo ": ".$taille_totale." Gb";
+          ?>
         </section>
         <footer>
 

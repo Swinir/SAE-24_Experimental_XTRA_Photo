@@ -12,12 +12,13 @@ $mdp2= $req->fetchall();
 $req->closeCursor();
 $res=$mdp2[0];
 
+$mdp_bd = $res['password'];
 
 
 
 
 if($res['block_user'] == 0){
-    if ($mdp==$res['password']) {
+    if (password_verify($mdp,$mdp_bd)) {
         if($res['admin'] == 1){
             $_SESSION['admin'] = 1;
         }else{

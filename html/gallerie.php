@@ -29,7 +29,7 @@
         <?php
 
         #print_r($_GET);
-        $dsql="SELECT path_photo FROM photos";
+        $dsql="SELECT * FROM photos";
 
         if(isset($_GET['ordre'])){
             if($_GET['ordre'] == "recent"){
@@ -46,9 +46,9 @@
         $req->execute();
         $res= $req->fetchall();
         $req->closeCursor();
-        #echo "<pre>";
-        #print_r($sql);
-        #echo "</pre>";
+        echo "<pre>";
+        print_r($res);
+        echo "</pre>";
         foreach($res as $tab){
             echo '<div class="photo">';
             $path_photo = $tab['path_photo'];

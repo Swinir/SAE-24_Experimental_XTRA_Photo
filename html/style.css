@@ -168,7 +168,6 @@ input.formcon:focus{
 #comp {
     display: block;
     height: 100%;
-    width: 70%;
     background-color: #2D648B;
     border: solid 1px;
     border-radius: 5px;
