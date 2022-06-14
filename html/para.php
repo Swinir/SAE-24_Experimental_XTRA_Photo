@@ -23,16 +23,16 @@
               <li>.</li>
               <li>.</li>
               <li>.</li>
-              
+
 
             </ul>
-          
+
           </div>
           <div id="prog">
             <div id="comp">
-              <?php 
-              $free = disk_free_space("C:");
-              $total = disk_total_space("C:");
+              <?php
+              $free = disk_free_space("/");
+              $total = disk_total_space("/");
               $pct = (int) (($free/$total) * 100);
               #$pct = 12;
               $taille = 100-$pct;
@@ -42,14 +42,14 @@
                barre.style.width = "'.$taille.'%";
                </script>';
               ?>
-              
+
             </div>
           </div>
           <?php
           $chiffre = strlen($total)-9;
           $taille_totale = "";
-          
-          for ($i=0; $i < $chiffre ; $i++) { 
+
+          for ($i=0; $i < $chiffre ; $i++) {
             $taille_totale = $taille_totale.substr($total,$i,1);
           }
           echo ": ".$taille_totale." Gb";
