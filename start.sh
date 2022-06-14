@@ -5,6 +5,7 @@ if [ -f "$FILE" ]
 then
   echo "Starting program ...."
   python3 ./main.py
+  echo "Photo taken!"
 else
   echo "It seems this is the first time this program is launched, do you want to install all the dependencies and setup the website automatically ? (yes or no)"
   read choice
