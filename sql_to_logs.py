@@ -1,4 +1,4 @@
-import import_data
+from import_data import load_class
 import sql_bridge
 import save_data
 import os
@@ -11,7 +11,7 @@ class LOGS:
         self.time = time_str_class
 
 LOGS_container_sql = []
-LOGS_container_dict = import_data.load_class("LOGS.json")
+LOGS_container_dict = load_class("LOGS.json")
 if LOGS_container_dict:
     for i in LOGS_container_dict["LOGS"]:
         LOGS_container_sql.append(LOGS(i["severity"], i["description"], i["time"]))

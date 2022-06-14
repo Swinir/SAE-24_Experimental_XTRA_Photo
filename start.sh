@@ -17,7 +17,9 @@ else
 
   #Intallation of python
 
-  sudo chmod a+x main.py
+  sudo chmod a+rwx ./*
+
+  sudo mkdir ./images/
 
   touch ./LOGS.json
   touch ./LOGS.txt
@@ -90,7 +92,7 @@ else
 
   #create a symbolic link for the website to access pictures
 
-  sudo ln -s pwd/images /var/www/html/
+  sudo ln -s ./images /var/www/html/
 
   ##############
 
@@ -111,11 +113,6 @@ else
 
   sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
   echo "xdg-open http://localhost" >> /etc/xdg/lxsession/LXDE-pi/autostart
-
-
-
-
-  sudo chmod a+x start.sh
 
   filepath=`pwd`
 

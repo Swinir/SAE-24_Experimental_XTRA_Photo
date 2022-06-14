@@ -1,5 +1,5 @@
 import mysql.connector
-import import_data
+from import_data import load_class
 
 
 class LOGS:
@@ -9,7 +9,7 @@ class LOGS:
         self.time = time_str_class
 
 LOGS_container = []
-LOGS_container_dict = import_data.load_class("LOGS.json")
+LOGS_container_dict = load_class("LOGS.json")
 if LOGS_container_dict:
     for i in LOGS_container_dict["LOGS"]:
         LOGS_container.append(LOGS(i["severity"], i["description"], i["time"]))
@@ -56,7 +56,7 @@ for Log_obj in LOGS_container:
     if severity == 'critical':
             log_level = 3
 
-    values = str("'" + str(description) + "'" + " , " + "'" + str(log_level) + "'" + " , " + "'" + str(time) + "'")
+    values = str("'" + str(description) + "'" + " , " + str(log_level) + " , " + "'" + str(time) + "'")
     sql = str("INSERT INTO logs (contenue_log,niv_log,date_log) VALUES ("+ str(values) + ");")
     try:
         Db_Cursor.execute(sql)

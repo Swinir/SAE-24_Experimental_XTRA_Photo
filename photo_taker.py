@@ -58,7 +58,7 @@ def take_picture():
             subprocess.check_call(['fswebcam', '-r', resolution, '-d', current_cam, '--no-banner', photo_path])
         except:
             logs_handler.entry_create("critical",
-                                "The program couldn't take a picture using the camera",
+                                "The program couldn not take a picture using the camera",
                                 "yes")
 
         try:
