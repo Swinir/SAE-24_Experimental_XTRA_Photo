@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `#username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pseudo + clé étrangère pour relier photos et logs',
   `login` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint(1) NOT NULL COMMENT 'l''utilisateur est-il admin ?',
   `block_user` tinyint(1) NOT NULL COMMENT '0= free /1=blocked',
   `duration` datetime NOT NULL COMMENT 'Pour l''éxpiration du mdp',
