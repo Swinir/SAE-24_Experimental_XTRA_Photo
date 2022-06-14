@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import paramiko
 import os
 
@@ -8,8 +9,8 @@ try:
     data = content.split("\n")
     ip_addr = data[0].split("=")[1]
     ip_addr = ip_addr.strip()
-    username = data[1].split("=")[1]
-    username = username.strip()
+    user = data[1].split("=")[1]
+    user = user.strip()
     password = data[2].split("=")[1]
     password = password.strip()
     install_path = data[3].split("=")[1]
@@ -25,17 +26,19 @@ except:
         output.write(str("ip_addr = " + str(ip_addr) + "\n" + "user = " + str(user) + "\n" + "password = " + str(password) + "\n" + "install_path = " + str(install_path)))
 
 port = 22
-command = "cd " + str(install_path) + " && ./main.py"
+command = "cd " + str(install_path) + " && ./start.sh"
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 try:
-    ssh.connect(ip_addr, port, username, password)
+    ssh.connect(ip_addr, port, user, password)
     print("Connected to " + str(ip_addr))
+    stdin, stdout, stderr = ssh.exec_command(command)
+    print("Command executed: " + str(command))
+    sleep(8)
+    stdin.close()
+    ssh.close()
 except:
     print("Connection failed please check the IP address, the user and the password")
     os.remove("data.conf")
     sys.exit(1)
-stdin, stdout, stderr = ssh.exec_command(command)
-print("Command executed: " + str(command))
-print("Output: " + str(stdout.read()))

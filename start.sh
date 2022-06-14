@@ -90,11 +90,7 @@ else
   sudo apt install php-mysql -y
   sudo service apache2 restart
 
-  #create a symbolic link for the website to access pictures
 
-  sudo ln -s ./images /var/www/html/
-
-  ##############
 
   sudo touch /home/installed_path.txt
   sudo chmod 777 /home/installed_path.txt
@@ -116,6 +112,13 @@ else
 
   filepath=`pwd`
 
+  #create a symbolic link for the website to access pictures
+
+  sudo ln -s ${filepath}/images /var/www/html/
+
+  ##############
+
+
   echo "#!/bin/bash" > /var/www/html/launch_pic_taker.sh
   echo "#!/bin/bash" > /var/www/html/launch_logs.sh
   echo "#!/bin/bash" > /var/www/html/launch_cron_disable.sh
@@ -134,8 +137,6 @@ else
   sudo chmod a+wx /var/www/html/launch_logs.sh
   sudo chmod a+wx /var/www/html/launch_cron_disable.sh
   sudo chmod a+wx /var/www/html/launch_cron_activate.sh
-
-
 
   sudo chmod a+w /etc/apache2/envvars
   echo "export APACHE_RUN_USER=pi" >> /etc/apache2/envvars
