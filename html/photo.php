@@ -16,8 +16,12 @@
     }elseif(empty($_POST['descrip'])){
         $descrip = 'NULL';
     }
-
-    $login = $_SESSION['user_conn'];
+    if(isset($_SESSION['user_conn'])){
+        $login = $_SESSION['user_conn'];
+    }else{
+        $login = "NULL";
+    }
+    
 
     /* Ouverture et lecture du path (simplement) */
     $myfile = fopen("installed_path.txt", "r") or die("Unable to open file!");
@@ -34,25 +38,34 @@
     $req->execute();
     $id_photo = $req->fetchAll();
     $req->closeCursor();
-
     /* On récupere le dernier id (derniere photo prise) */
     $id_der = $id_photo[count($id_photo)-1]['id_photo'];
-    if(isset($_SESSION['user_conn'])){ # Requete sql : le id de l'utilisateur s'il est connecté 
-        $sql2 = "SELECT id_user FROM users WHERE login ='".$login."'";
-        $req = $bd->prepare($sql2);
-        $req->execute();
-        $idlog_tab = $req->fetchAll();
-        $req->closeCursor();
-        print_r($idlog_tab);
-        $idlog = $idlog_tab[0]['id_user'];
-
-        /* On met la description dans la BDD */
-        $sql = "UPDATE `photos` SET `#user_photo` = '".$idlog."', `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
-        $req = $bd->prepare($sql);
-        $req->execute();
-        $req->closeCursor();
-        echo $sql;
-
+    if(isset($_SESSION['user_conn'])){
+        if($_SESSION['user_conn']=='null'){
+            $sql = "UPDATE `photos` SET `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
+            $req = $bd->prepare($sql);
+            $req->execute();
+            $req->closeCursor();
+            echo $sql;
+        }else{ # Requete sql : le id de l'utilisateur s'il est connecté 
+            $sql2 = "SELECT id_user FROM users WHERE login ='".$login."'";
+            $req = $bd->prepare($sql2);
+            $req->execute();
+            $idlog_tab = $req->fetchAll();
+            $req->closeCursor();
+            echo $sql2;
+            print_r($idlog_tab);
+            $idlog = $idlog_tab[0]['id_user'];
+    
+            /* On met la description dans la BDD */
+            $sql = "UPDATE `photos` SET `#user_photo` = '".$idlog."', `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
+            $req = $bd->prepare($sql);
+            $req->execute();
+            $req->closeCursor();
+            echo $sql;
+    
+        } 
+       
     }else{ # On met la description dans la BDD s'il n'est pas connecté
         $sql = "UPDATE `photos` SET `description` = '".$descrip."', `name_photo` = '".$nom."' WHERE `photos`.`id_photo` = ".$id_der." ";
         $req = $bd->prepare($sql);
