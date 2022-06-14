@@ -34,7 +34,7 @@ if(!empty($res)){
 /* Vérification des paramètres du mot de passe */
 $var = cnt_mdp($pwd);
 
-if($pwd >= $_SESSION['pwd_len']){
+if($pwd >= $_COOKIE['pwd_len']){
     if($var['maj'] >= $_COOKIE['maj_len'] && $var['min'] >= $_COOKIE['min_len'] && $var['num'] >= $_COOKIE['num_len'] && $var['spe'] >= $_COOKIE['spe_len']){
         
         /* Si le mot de passe est bon : création de l'utilisateur demandé */
