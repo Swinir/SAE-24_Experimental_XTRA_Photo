@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `photos` (
   `id_photo` int(11) NOT NULL AUTO_INCREMENT,
   `#user_photo` int(11) DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'commentaires si on veut',
-  `name_photo` int(11) DEFAULT NULL,
+  `name_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `favori` tinyint(1) NOT NULL COMMENT 'mettre en favorie ou pas',
   `date_photo` datetime NOT NULL,
   `path_photo` varchar(255) NOT NULL,
