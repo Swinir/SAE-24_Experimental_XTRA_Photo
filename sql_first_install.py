@@ -51,11 +51,11 @@ def Db_Change_SQL_File(db_name, path, user, passwd):
                                 "no")
 
 
-Db_Initialise("Iutphoto123@")  # password needs to be changed via a static method or using a dynamic method
+Db_Initialise("Iutphoto123@") #Initialise la base de donnée
 
 pwd = os.getcwd()
 path = str(pwd + "/BDD")  # name needs to be changed depending on the database's name
 Db_Change_SQL_File("BDD", path, "root","Iutphoto123@")  # the password needs to be changed depending the current password on the raspi
 time.sleep(1)
 Db_Initialise("Iutphoto123@")
-Db_add_user("admin", "temp_passwd")
+Db_add_user("admin", "temppasswd")
