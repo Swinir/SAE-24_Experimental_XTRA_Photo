@@ -94,8 +94,23 @@ form#con{
     margin: 25px 50px;
     background-color: white;
 }
+.img{
+    text-align: center;
+    width: 47%;
+}
+
 .photo img{
     height: 350px;
+}
+table.photo2, .photo2 tr, .photo2 td{
+    border : none;
+}
+.infos {
+    width: 47%;
+    text-align: left;
+}
+.favori {
+    width: 6%;
 }
 #main li{
     list-style-type: none;
@@ -168,7 +183,6 @@ input.formcon:focus{
 #comp {
     display: block;
     height: 100%;
-    width: 70%;
     background-color: #2D648B;
     border: solid 1px;
     border-radius: 5px;

@@ -83,6 +83,16 @@
               elseif($_GET['cr']==4){
                 echo '<p style="color : red; font-size : 17px"> Les mots de passe réntrés ne correspondent pas </p>';
               }
+              elseif($_GET['cr']==5){
+                echo '<p style="color : red; font-size : 17px"> Le mot de passe ne correspond pas aux critères </p>';
+                echo  'Rappel des critères : 
+                <ul>
+                  <li>Nombre de majuscules : '.$_COOKIE['maj_len'].'</li>
+                  <li>Nombre de minuscules : '.$_COOKIE['min_len'].'</li>
+                  <li>Nombre de chiffres : '.$_COOKIE['num_len'].'</li>
+                  <li>Nombre de caractères spéciaux : '.$_COOKIE['spe_len'].'</li>
+                </ul>';
+              }
             }
             ?>
           <form action="add_user.php" method="POST">
