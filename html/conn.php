@@ -24,9 +24,9 @@ if($res['block_user'] == 0){
             $_SESSION['connecte'] = 1;
             $_SESSION['tentative'] = 0;
             $_SESSION['user_conn'] = $login;
-            $descri = 'L\'utilisateur "'.$login.'" s\'est connecté';
+            $descri = 'L\\\'utilisateur "'.$login.'" s\\\'est connecté';
             logs($descri,0);
-            header ("Location: index.php?con=1");
+            #header ("Location: index.php?con=1");
         }else {
             $_SESSION['connecte'] = 0;
             $_SESSION['tentative'] += 1;
@@ -35,7 +35,7 @@ if($res['block_user'] == 0){
                     $req= $bd->prepare($sql);
                     $req->execute();
                     $req->closeCursor();
-                    $descri = 'L\'utilisateur "'.$login.'" a été bloqué';
+                    $descri = 'L\\\'utilisateur "'.$login.'" a été bloqué';
                     logs($descri,2);
                 }
             header ("Location: connexion.php?con=0");
@@ -51,7 +51,7 @@ if($res['block_user'] == 0){
             $_SESSION['connecte'] = 1;
             $_SESSION['tentative'] = 0;
             $_SESSION['user_conn'] = $login;
-            $descri = 'L\'utilisateur "'.$login.'" s\'est connecté';
+            $descri = 'L\\\'utilisateur "'.$login.'" s\\\'est connecté';
             logs($descri,0);
             header ("Location: index.php?con=1");
         }
@@ -63,7 +63,7 @@ if($res['block_user'] == 0){
                     $req= $bd->prepare($sql);
                     $req->execute();
                     $req->closeCursor();
-                    $descri = 'L\'utilisateur "'.$login.'" a été bloqué';
+                    $descri = 'L\\\'utilisateur "'.$login.'" a été bloqué';
                     logs($descri,2);
                 }
             header ("Location: connexion.php?con=0");

@@ -27,12 +27,12 @@ $req->execute();
 $req->closeCursor();
 
 if($block == 0){
-    $descri = 'L\'utilisateur "'.$_SESSION['user_mod'].'" a été débloqué';
+    $descri = 'L\\\'utilisateur "'.$_SESSION['user_mod'].'" a été débloqué';
     logs($descri,1);
     header("Location: modif.php?ch=4");
     exit();
 }elseif($block == 1){
-    $descri = 'L\'utilisateur "'.$_SESSION['user_mod'].'" a été bloqué';
+    $descri = 'L\\\'utilisateur "'.$_SESSION['user_mod'].'" a été bloqué';
     logs($descri,1);
     header("Location: modif.php?ch=5");
     exit();

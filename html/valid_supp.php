@@ -12,7 +12,7 @@ if(isset($_POST['conf'])){
         $req = $bd->prepare($sql);
         $req->execute();
         $req->closeCursor();
-        $descri = 'L\'utilisateur "'.$user.'" a été supprimé';
+        $descri = 'L\\\'utilisateur "'.$user.'" a été supprimé';
         logs($descri,1);
         header("Location: users.php?supp=1");
     }elseif($_POST['conf'] == 'Non'){

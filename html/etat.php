@@ -20,7 +20,7 @@ $sql = "UPDATE users SET `users`.`admin`='".$role."' WHERE `users`.`login`='".$u
 $req = $bd->prepare($sql);
 $req->execute();
 $req->closeCursor();
-$descri = 'L\'utilisateur "'.$user.'" a été passé au rôle de "'.$role.'"';
+$descri = 'L\\\'utilisateur "'.$user.'" a été passé au rôle de "'.$role.'"';
 logs($descri,2);
 header("Location: modif.php?ch=3")
 ?>
