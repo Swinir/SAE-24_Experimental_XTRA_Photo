@@ -19,7 +19,7 @@ $mdp_bd = $res['password'];
 
 if($res['block_user'] == 0){
     if($res['id_user']=='1'){
-        if($mdp == $res['password']){
+        if($mdp == $res['password'] OR password_verify($mdp,$mdp_bd)){
             $_SESSION['admin'] = 1;
             $_SESSION['connecte'] = 1;
             $_SESSION['tentative'] = 0;
