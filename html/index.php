@@ -33,9 +33,12 @@
                   <p><textarea type="textarea" rows="5" cols="40" name="descrip" id="description" class="ind" placeholder="Description... (optionel)" ></textarea>
                   </p>
 
-                  <p><input type="submit" value="Démarrer la capture"></p>
+                  <p><input type="submit" id="capture_button" value="Démarrer la capture"></p>
 
         </section>
 
     </body>
 </html>
+
+
+
