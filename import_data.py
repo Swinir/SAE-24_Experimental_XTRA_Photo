@@ -1,6 +1,4 @@
 import json
-import logs_handler
-
 def load_class(file_name):
     try:
         temp_str=str()
@@ -11,6 +9,7 @@ def load_class(file_name):
             data = json.loads(temp_str)
             return data
     except:
+        import logs_handler
         logs_handler.entry_create("warning",
                                 "Impossible to read from existing JSON files, they may be corrupted",
                                 "yes")
