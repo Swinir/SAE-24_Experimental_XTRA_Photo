@@ -3,6 +3,7 @@ session_start();
 include("restri.php");
 include("base.php");
 include("cnt_mdp.php");
+include("ajout_logs.php");
 
 /* Recuperation du formulaire */
 $login = $_POST['login'];
@@ -36,24 +37,27 @@ $var = cnt_mdp($pwd);
 
 if($pwd >= $_COOKIE['pwd_len']){
     if($var['maj'] >= $_COOKIE['maj_len'] && $var['min'] >= $_COOKIE['min_len'] && $var['num'] >= $_COOKIE['num_len'] && $var['spe'] >= $_COOKIE['spe_len']){
-        
+
         /* Si le mot de passe est bon : création de l'utilisateur demandé */
         $date_cr = date("Y-m-d")." ".date("H:i:s");
         echo $date_cr;
         if($pwd == $cpwd){  #Vérification des deux mots de passe rentrés
-            $mdp = password_hash($pwd,PASSWORD_DEFAULT); #encryption du mot de passe 
+            $mdp = password_hash($pwd,PASSWORD_DEFAULT); #encryption du mot de passe
             $sql = "INSERT INTO `users` (`id_user`, `login`, `password`, `admin`, `block_user`, `duration`) VALUES (NULL, '".$login."', '".$mdp."', '$role', '0', '".$date_cr."')";
             echo $sql;
             $req = $bd->prepare($sql);
             $req->execute();
             $req->closeCursor();
-
+            $desc = "L\'utilisateur ".$login." à été crée.";
+            logs($desc,0);
             header("Location: users.php?cr=3");
         }elseif($pwd != $cpwd){
             header("Location: users.php?cr=4");
         }
-        
+
     }else{
+        print_r($var);
+        print_r($_COOKIE);
         header('Location: users.php?cr=5 ');
     }
 }

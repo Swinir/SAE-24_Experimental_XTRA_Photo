@@ -1,5 +1,5 @@
 <?php
-
+include("ajout_logs.php");
 $maj = $_POST['Majuscule'];
 $min = $_POST['Minuscule'];
 $num = $_POST['Chiffre'];
@@ -12,6 +12,8 @@ if(($maj + $min + $num + $spe)<= $pwd_len){
     setcookie("num_len",$num,$end);
     setcookie("spe_len",$spe,$end);
     setcookie("pwd_len",$pwd_len,$end);
+    $descri = 'Les paramètres de sécurité de mot de passe on été mis à jour';
+    logs($descri,1);
     header("Location: para_mdp.php?mdp=1");
     exit();
 }else{

@@ -105,6 +105,9 @@
             echo '<form action="fav.php" method="POST">
             <input type="submit" name="'.$tab['id_photo'].'" value=" Favori ">
             </form>';
+            echo '<form action="supp_photo.php" method="POST">
+            <input type="submit" name="'.$tab['id_photo'].'" value=" Supprimer ">
+            </form>';
             echo "</td></tr></table>";
             echo '</div>';
         }
