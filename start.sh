@@ -5,6 +5,7 @@ if [ -f "$FILE" ]
 then
   echo "Starting program ...."
   python3 ./main.py
+  echo "Photo taken!"
 else
   echo "It seems this is the first time this program is launched, do you want to install all the dependencies and setup the website automatically ? (yes or no)"
   read choice
@@ -16,7 +17,7 @@ else
 
   #Intallation of python
 
-  sudo chmod a+x main.py
+  sudo mkdir ./images/
 
   touch ./LOGS.json
   touch ./LOGS.txt
@@ -87,11 +88,7 @@ else
   sudo apt install php-mysql -y
   sudo service apache2 restart
 
-  #create a symbolic link for the website to access pictures
 
-  sudo ln -s pwd/images /var/www/html/
-
-  ##############
 
   sudo touch /home/installed_path.txt
   sudo chmod 777 /home/installed_path.txt
@@ -111,7 +108,40 @@ else
   sudo chmod 777 /etc/xdg/lxsession/LXDE-pi/autostart
   echo "xdg-open http://localhost" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
+  filepath=`pwd`
 
-  sudo chmod a+x start.sh
+  #create a symbolic link for the website to access pictures
+
+  sudo ln -s ${filepath}/images /var/www/html/
+
+  ##############
+
+
+  echo "#!/bin/bash" > /var/www/html/launch_pic_taker.sh
+  echo "#!/bin/bash" > /var/www/html/launch_logs.sh
+  echo "#!/bin/bash" > /var/www/html/launch_cron_disable.sh
+  echo "#!/bin/bash" > /var/www/html/launch_cron_activate.sh
+
+  echo "cd ${filepath} && ./main.py" >> /var/www/html/launch_pic_taker.sh
+
+  echo "cd ${filepath} && python3 logs_to_sql.py" >> /var/www/html/launch_logs.sh
+  echo "cd ${filepath} && python3 sql_to_logs.py" >> /var/www/html/launch_logs.sh
+
+  echo "cd ${filepath} && python3 crontab_php_enable.py disable" >> /var/www/html/launch_cron_disable.sh
+
+  echo "cd ${filepath} && python3 crontab_php_enable.py activate" >> /var/www/html/launch_cron_activate.sh
+
+  sudo chmod a+wx /var/www/html/launch_pic_taker.sh
+  sudo chmod a+wx /var/www/html/launch_logs.sh
+  sudo chmod a+wx /var/www/html/launch_cron_disable.sh
+  sudo chmod a+wx /var/www/html/launch_cron_activate.sh
+
+  sudo chmod a+w /etc/apache2/envvars
+  echo "export APACHE_RUN_USER=pi" >> /etc/apache2/envvars
+  echo "export APACHE_RUN_GROUP=pi" >> /etc/apache2/envvars
+
+  sudo systemctl restart apache2
+
+  sudo chmod a+rwx ./* #allows the website to write images to this folder
 
 fi

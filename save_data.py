@@ -1,5 +1,4 @@
 import json
-import logs_handler
 
 def save_class(class_container,file_name,class_name):
     try:
@@ -12,6 +11,7 @@ def save_class(class_container,file_name,class_name):
                         out_file.write(",")
                 out_file.writelines(["]\n", "}\n"])
     except:
+        import logs_handler
         logs_handler.entry_create("warning",
-                                "The programm couldn't save the JSON backup data into it's corresponding file",
+                                "The programm couldn not save the JSON backup data into it s corresponding file",
                                 "yes")

@@ -1,4 +1,7 @@
-import mysql.connector
+try:
+    import mysql.connector
+except:
+    print("Impossible to import mysql.connector (disregard this message if you are running this script for the first time)")
 import logs_handler
 
 def Db_Connection_Start():
