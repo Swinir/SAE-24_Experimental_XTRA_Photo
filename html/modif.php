@@ -26,12 +26,12 @@
                 <label for="mdp">Mot de passe :</label>
                 <input type="submit" name="mdp" value="Modifier">
             </form>
-
+            <br>
             <form action="supp.php" method="POST">
                 <label for="supp">Supprimer :</label>
                 <input type="submit" name="supp" value="Supprimer">
             </form>
-
+            <br>
             <form action="etat.php" method="post">
                 <label for="etat">Rôle : </label>
                 <select name="rôle" id="rôle">
@@ -42,6 +42,11 @@
                 <input type="submit" value="Mettre à jour">
             </form>
             <br>
+            <form action="block.php" method="POST">
+                <label for="block">Bloquer/Debloquer :</label>
+                <input type="submit" name="block" value=" Bloquer/Debloquer ">
+            </form>
+            <br>
             <?php
             if(isset($_GET['ch'])){
                 if($_GET['ch']== 1 ){
@@ -50,6 +55,10 @@
                     echo '<p style="color : red; font-size : 17px">Message : Veuillez sélectionner un rôle</p>';
                 }elseif($_GET['ch']== 3 ){
                     echo '<p style="color : red; font-size : 17px">Message : Rôle mis à jour</p>';
+                }elseif($_GET['ch']== 4 ){
+                    echo '<p style="color : red; font-size : 17px">Message : Utilisateur débloqué </p>';
+                }elseif($_GET['ch']== 5 ){
+                    echo '<p style="color : red; font-size : 17px">Message : Utilisateur bloqué </p>';
                 }
             }
             ?>
