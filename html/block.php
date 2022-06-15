@@ -2,6 +2,7 @@
 session_start();
 include("restri.php");
 include("base.php");
+include("ajout_logs.php");
 /* Premiere requete pour voir l'état de l'utilisateur */
 $sql = "SELECT block_user FROM users WHERE login = '".$_SESSION['user_mod']."' ";
 $req = $bd->prepare($sql);
@@ -26,9 +27,13 @@ $req->execute();
 $req->closeCursor();
 
 if($block == 0){
+    $descri = 'L\'utilisateur "'.$_SESSION['user_mod'].'" a été débloqué';
+    logs($descri,1);
     header("Location: modif.php?ch=4");
     exit();
 }elseif($block == 1){
+    $descri = 'L\'utilisateur "'.$_SESSION['user_mod'].'" a été bloqué';
+    logs($descri,1);
     header("Location: modif.php?ch=5");
     exit();
 }

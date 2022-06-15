@@ -44,7 +44,7 @@
             <br>
             <form action="block.php" method="POST">
                 <label for="block">Bloquer/Debloquer :</label>
-                <input type="submit" name="block" value=" Bloquer/Debloquer ">
+                <input type="submit" name="block" value=" Bloquer/Debloquer " id="block_button">
             </form>
             <br>
             <?php

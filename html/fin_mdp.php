@@ -1,6 +1,7 @@
 <?php
 include("base.php");
 session_start();
+include('ajout_logs.php');
 
 /* Recuperation des information */
 
@@ -29,6 +30,8 @@ if($mdp2[0]['id_user']==1){
             $req = $bd->prepare($sql);
             $req->execute();
             $req->closeCursor();
+            $descri = 'Le mot de passe de "'.$login.'" a été changé';
+            logs($descri,0);
             header("Location: modif.php?ch=1");
         }else{
             header("Location: change_mdp.php?err=1");
@@ -45,6 +48,8 @@ if($mdp2[0]['id_user']==1){
             $req = $bd->prepare($sql);
             $req->execute();
             $req->closeCursor();
+            $descri = 'Le mot de passe de "'.$login.'" a été changé';
+            logs($descri,0);
             header("Location: modif.php?ch=1");
         }else{
             header("Location: change_mdp.php?err=1");

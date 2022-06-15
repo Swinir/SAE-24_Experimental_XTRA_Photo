@@ -3,6 +3,7 @@ session_start();
 include("restri.php");
 include("base.php");
 include("cnt_mdp.php");
+include("ajout_logs.php");
 
 /* Recuperation du formulaire */
 $login = $_POST['login'];
@@ -47,13 +48,16 @@ if($pwd >= $_COOKIE['pwd_len']){
             $req = $bd->prepare($sql);
             $req->execute();
             $req->closeCursor();
-
-            header("Location: users.php?cr=3");
+            $desc = "L\'utilisateur ".$login." à été crée.";
+            logs($desc,0);
+            #header("Location: users.php?cr=3");
         }elseif($pwd != $cpwd){
             header("Location: users.php?cr=4");
         }
         
     }else{
+        print_r($var);
+        print_r($_COOKIE);
         header('Location: users.php?cr=5 ');
     }
 }
