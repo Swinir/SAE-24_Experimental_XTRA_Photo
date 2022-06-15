@@ -26,7 +26,7 @@ if($res['block_user'] == 0){
             $_SESSION['user_conn'] = $login;
             $descri = 'L\\\'utilisateur "'.$login.'" s\\\'est connecté';
             logs($descri,0);
-            #header ("Location: index.php?con=1");
+            header ("Location: index.php?con=1");
         }else {
             $_SESSION['connecte'] = 0;
             $_SESSION['tentative'] += 1;
@@ -39,7 +39,7 @@ if($res['block_user'] == 0){
                     logs($descri,2);
                 }
             header ("Location: connexion.php?con=0");
-        
+
         }
     }else{
         if (password_verify($mdp,$mdp_bd)) {
@@ -67,10 +67,10 @@ if($res['block_user'] == 0){
                     logs($descri,2);
                 }
             header ("Location: connexion.php?con=0");
-        
+
         }
     }
-    
+
 }else{
     header('Location: index.php?con=2');
 }
