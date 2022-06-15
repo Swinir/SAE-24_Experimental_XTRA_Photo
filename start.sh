@@ -17,8 +17,6 @@ else
 
   #Intallation of python
 
-  sudo chmod a+rwx ./*
-
   sudo mkdir ./images/
 
   touch ./LOGS.json
@@ -143,5 +141,7 @@ else
   echo "export APACHE_RUN_GROUP=pi" >> /etc/apache2/envvars
 
   sudo systemctl restart apache2
+
+  sudo chmod a+rwx ./* #allows the website to write images to this folder
 
 fi
